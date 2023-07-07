@@ -5,6 +5,19 @@ const authorization =
 
 const spinner = document.querySelector(".spinner-border");
 
+const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
+const appendAlert = (message, type) => {
+  const wrapper = document.createElement("div");
+  wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-danger alert-dismissible" role="alert">`,
+    `   <div>${message}</div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    "</div>",
+  ].join("");
+
+  alertPlaceholder.append(wrapper);
+};
+
 const getRemoteDate = () => {
   fetch(URL, {
     headers: {
@@ -34,7 +47,7 @@ const getRemoteDate = () => {
         newCol.classList.add(
           "col",
           "col-6",
-          "col-md-4",
+          "col-md-3",
           "col-lg-3",
           "d-flex",
           "align-items-stretch"
@@ -57,7 +70,7 @@ const getRemoteDate = () => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      appendAlert(err);
     });
 };
 

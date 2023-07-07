@@ -14,6 +14,19 @@ const authorization =
 const addressBarContent = new URLSearchParams(location.search);
 const eventId = addressBarContent.get("id");
 
+const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
+const appendAlert = (message, type) => {
+  const wrapper = document.createElement("div");
+  wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-danger alert-dismissible" role="alert">`,
+    `   <div>${message}</div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    "</div>",
+  ].join("");
+
+  alertPlaceholder.append(wrapper);
+};
+
 if (eventId) {
   document.querySelector(".btn-primary").innerText = "Modifica prodotto";
   document.querySelector("h1").innerText = "Modifica dettagli prodotto";
@@ -30,7 +43,13 @@ if (eventId) {
       if (res.ok) {
         return res.json();
       } else {
-        throw new Error("Errore nel recupero dei dettagli dell'evento");
+        if (res.status === 404) {
+          throw new Error("Not found");
+        } else if (res.status === 500) {
+          throw new Error("Internal Server Error");
+        } else {
+          throw new Error("Errore nel recupero dei dettagli dell'evento");
+        }
       }
     })
     .then((detail) => {
@@ -40,7 +59,7 @@ if (eventId) {
       imgInput.value = detail.imageUrl;
       priceInput.value = detail.price;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => appendAlert(err));
 }
 
 formReference.addEventListener("submit", (e) => {
@@ -102,7 +121,7 @@ okButton.addEventListener("click", (e) => {
       }
     })
     .catch((err) => {
-      console.log(err);
+      appendAlert(err);
     });
 });
 

@@ -49,6 +49,7 @@
     </nav>
     <div class="container">
       <h1 class="text-center m-4">Crea nuovi prodotti da vendere</h1>
+      <div id="liveAlertPlaceholder"></div>
       <form>
         <div class="mb-3">
           <label for="nameProduct" class="form-label">Nome prodotto</label>
@@ -70,7 +71,7 @@
           <label for="priceProduct" class="form-label">Prezzo del prodotto</label>
           <input type="number" class="form-control" id="priceProduct" required />
         </div>
-        <button class="btn btn-success">Salva</button>
+        <button class="btn btn-primary">Salva</button>
         <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#resetModal">
           Reset Form
         </button>
