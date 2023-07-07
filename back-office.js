@@ -19,28 +19,6 @@ if (eventId) {
   document.querySelector("h1").innerText = "Modifica dettagli prodotto";
   const deleteButton = document.querySelector(".btn-danger");
   deleteButton.classList.remove("d-none");
-  //   deleteButton.addEventListener("click", function () {
-  //     fetch(URL + eventId, {
-  //       method: "DELETE",
-  //       headers: {
-  //         Authorization: authorization,
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //       .then((res) => {
-  //         if (res.ok) {
-  //           // abbiamo eliminato l'evento con successo!
-  //           alert("EVENTO ELIMINATO!");
-  //           location.assign("index.html");
-  //         } else {
-  //           // c'è stato un problema nell'eliminazione dell'evento
-  //           throw new Error("Problema nell'eliminazione dell'evento");
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   });
 
   fetch(URL + eventId, {
     headers: {
@@ -87,7 +65,6 @@ okButton.addEventListener("click", (e) => {
     imageUrl: imgInput.value,
     price: priceInput.value,
   };
-  console.log("ecco i valori recuperati dal form:", newProduct);
 
   let urlToUse;
   if (eventId) {

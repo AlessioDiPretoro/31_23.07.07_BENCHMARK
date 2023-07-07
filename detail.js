@@ -43,7 +43,6 @@ const getRemoteDate = () => {
                 <p class="card-text flex-grow-1"><span>${element.description}</span></p>
                 <p class="card-text fw-bold"><span>${element.brand}</span> - $ <span>${element.price}</span></p></p>
                 <div class="d-flex flex-column gap-2 justify-content-between flex-xl-row">
-                <a href="./detail.html?id=${element._id}" class="infoButton btn btn-success">Scopri di più</a>
                 <a href="./back-office.html?id=${element._id}"class="editButton btn btn-warning">Modifica</a>
               </div>
               </div>
