@@ -68,15 +68,26 @@
           <input type="number" class="form-control" id="priceProduct" required />
         </div>
         <button class="btn btn-primary">Salva</button>
-        <button class="btn btn-warning">Reset Form</button>
-        <button class="btn btn-danger d-none">Cancella prodotto</button>
+        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#resetModal">
+          Reset Form
+        </button>
+        <button class="btn btn-danger d-none" data-bs-toggle="modal" data-bs-target="#deleteModal">
+          Cancella prodotto
+        </button>
       </form>
     </div>
-    <div class="modal" tabindex="-1">
+    <!-- modale per reset this product -->
+    <div
+      class="modal fade"
+      id="resetModal"
+      tabindex="-1"
+      aria-labelledby="resetModal"
+      aria-hidden="true"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
+            <h1 class="modal-title fs-5" id="resetModal">Reset form</h1>
             <button
               type="button"
               class="btn-close"
@@ -85,11 +96,44 @@
             ></button>
           </div>
           <div class="modal-body">
-            <p>Modal body text goes here.</p>
+            Sicuro di voler resettare il form? L'operazione non è reversibile
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+            <button type="button" id="confirmReset" data-bs-dismiss="modal" class="btn btn-primary">
+              Conferma cancellazione
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modale per delete this product -->
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      aria-labelledby="deleteModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="deleteModal">Cancella prodotto</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Sicuro di voler cancellare il prodotto? L'operazione non è reversibile
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+            <button type="button" id="confirmDelete" class="btn btn-primary">
+              Conferma cancellazione
+            </button>
           </div>
         </div>
       </div>

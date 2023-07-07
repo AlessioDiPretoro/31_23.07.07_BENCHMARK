@@ -1,5 +1,5 @@
 const formReference = document.querySelector("form");
-const resetButton = document.querySelector(".btn-warning");
+const resetButton = document.querySelector("#confirmReset");
 const okButton = document.querySelector(".btn-primary");
 const nameInput = document.getElementById("nameProduct");
 const descriptionInput = document.getElementById("descriptionProduct");
@@ -19,28 +19,28 @@ if (eventId) {
   document.querySelector("h1").innerText = "Modifica dettagli prodotto";
   const deleteButton = document.querySelector(".btn-danger");
   deleteButton.classList.remove("d-none");
-  deleteButton.addEventListener("click", function () {
-    fetch(URL + eventId, {
-      method: "DELETE",
-      headers: {
-        Authorization: authorization,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          // abbiamo eliminato l'evento con successo!
-          alert("EVENTO ELIMINATO!");
-          location.assign("index.html");
-        } else {
-          // c'è stato un problema nell'eliminazione dell'evento
-          throw new Error("Problema nell'eliminazione dell'evento");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+  //   deleteButton.addEventListener("click", function () {
+  //     fetch(URL + eventId, {
+  //       method: "DELETE",
+  //       headers: {
+  //         Authorization: authorization,
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //       .then((res) => {
+  //         if (res.ok) {
+  //           // abbiamo eliminato l'evento con successo!
+  //           alert("EVENTO ELIMINATO!");
+  //           location.assign("index.html");
+  //         } else {
+  //           // c'è stato un problema nell'eliminazione dell'evento
+  //           throw new Error("Problema nell'eliminazione dell'evento");
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   });
 
   fetch(URL + eventId, {
     headers: {
@@ -128,3 +128,29 @@ okButton.addEventListener("click", (e) => {
       console.log(err);
     });
 });
+
+const confirmDelete = document.querySelector("#confirmDelete");
+
+const deletThisProduct = () => {
+  fetch(URL + eventId, {
+    method: "DELETE",
+    headers: {
+      Authorization: authorization,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => {
+      if (res.ok) {
+        // abbiamo eliminato l'evento con successo!
+        alert("EVENTO ELIMINATO!");
+        location.assign("index.html");
+      } else {
+        // c'è stato un problema nell'eliminazione dell'evento
+        throw new Error("Problema nell'eliminazione dell'evento");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+confirmDelete.addEventListener("click", deletThisProduct);
